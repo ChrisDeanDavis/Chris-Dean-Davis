@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Photography portfolio of Chris Dean Davis" />
+  <meta property="og:title" content="Chris Dean Davis | Photographer" />
+  <meta property="og:description" content="Portfolio of Chris Dean Davis – portrait, location, and black & white photography" />
+  <meta property="og:image" content="https://yourdomain.com/images/og-preview.jpg" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Chris Dean Davis | Photographer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background-color: #fff;
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    .main-header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .main-header h1 a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav ul.open {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    #scrollBar {
+      width: 0%;
+      height: 4px;
+      background: black;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      padding: 0 1rem;
+    }
+
+    .nav.prev { left: 0; }
+    .nav.next { right: 0; }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+  <div id="scrollBar"></div>
+
+  <header class="main-header">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+    <span class="mobile-toggle" onclick="toggleMenu()">☰</span>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="people.html">People</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="fineart.html">Fine Art</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Connect</a></li>
+        <li><a href="exhibitions.html">Exhibitions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="image-grid" id="gallery"></section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="nav prev" onclick="navigate(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Expanded image" />
+    <span class="nav next" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <script>
+    const gallery = document.getElementById('gallery');
+    const imageCount = 200;
+    const images = [];
+    let currentIndex = 0;
+
+    // Generate and shuffle filenames
+    const imagePaths = [];
+    for (let i = 1; i <= imageCount; i++) {
+      const padded = String(i).padStart(3, '0');
+      imagePaths.push(`images/home/home${padded}.JPG`);
+    }
+
+    // Shuffle with Fisher-Yates
+    for (let i = imagePaths.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [imagePaths[i], imagePaths[j]] = [imagePaths[j], imagePaths[i]];
+    }
+
+    // Load and display shuffled images
+    imagePaths.forEach((src, i) => {
+      const img = new Image();
+      img.src = src;
+      img.alt = `Home ${i + 1}`;
+      img.loading = 'lazy';
+      img.className = 'gallery-img';
+
+      img.onload = () => {
+        gallery.appendChild(img);
+        images.push(img);
+        img.addEventListener('click', () => {
+          currentIndex = images.indexOf(img);
+          showLightbox();
+        });
+      };
+
+      img.onerror = () => {};
+    });
+
+    function showLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = images[currentIndex].src;
+      lightbox.classList.add('active');
+
+      // Preload next
+      const nextIndex = (currentIndex + 1) % images.length;
+      const preload = new Image();
+      preload.src = images[nextIndex].src;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    function navigate(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'ArrowRight') navigate(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('open');
+    }
+
+    // Scroll progress
+    window.onscroll = function () {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scrollBar").style.width = scrolled + "%";
+    };
+  </script>
+</body>
+</html>
