@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exhibitions | Chris Dean Davis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+  <meta name="description" content="Exhibitions featuring the work of Chris Dean Davis, including solo and group shows in New Zealand." />
+  <meta property="og:title" content="Exhibitions | Chris Dean Davis" />
+  <meta property="og:description" content="Exhibitions featuring the work of Chris Dean Davis, including solo and group shows in New Zealand." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/headshot.JPG" />
+  <meta property="og:url" content="https://chrisdeandavis.com/exhibitions.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Exhibitions | Chris Dean Davis" />
+  <meta name="twitter:description" content="Exhibitions featuring the work of Chris Dean Davis, including solo and group shows in New Zealand." />
+  <meta name="twitter:image" content="images/headshot.JPG" />
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #000;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .main-header h1 a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 3rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+
+    .exhibition {
+      margin-bottom: 1.5rem;
+    }
+
+    .title {
+      font-weight: 600;
+    }
+
+    .date {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .venue {
+      font-style: italic;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="people.html">People</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="fineart.html">Fine Art</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Connect</a></li>
+        <li><a href="exhibitions.html" class="active">Exhibitions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>2022</h2>
+    <div class="exhibition">
+      <div class="title">Clementine</div>
+      <div class="date">02/12/2022 – 16/12/2022</div>
+      <div class="venue">Never Space Project, NZ</div>
+    </div>
+    <div class="exhibition">
+      <div class="title">Method</div>
+      <div class="date">17/06/2022 – 07/07/2022</div>
+      <div class="venue">Pah Homestead, NZ</div>
+    </div>
+
+    <h2>2021</h2>
+    <div class="exhibition">
+      <div class="title">Keeping On Keeping On</div>
+      <div class="date">03/12/2021 – 18/12/2021</div>
+      <div class="venue">Never Space Project, NZ</div>
+    </div>
+    <div class="exhibition">
+      <div class="title">Where The Sun Is Silent <span style="font-weight: normal;">(solo show)</span></div>
+      <div class="date">19/05/2021 – 13/06/2021</div>
+      <div class="venue">Nancy Caiger Gallery, NZ</div>
+    </div>
+
+    <h2>2020</h2>
+    <div class="exhibition">
+      <div class="title">Where The Sun Is Silent <span style="font-weight: normal;">(solo show)</span></div>
+      <div class="date">23/11/2020 – 07/12/2020</div>
+      <div class="venue">Never Space Project, NZ</div>
+    </div>
+
+    <h2>2017</h2>
+    <div class="exhibition">
+      <div class="title">The Shape of Things To Come</div>
+      <div class="date">01/06/2017 – 29/06/2017</div>
+      <div class="venue">Wallace Gallery, Morrinsville, NZ</div>
+    </div>
+    <div class="exhibition">
+      <div class="title">Repositioned</div>
+      <div class="date">07/04/2017 – 24/04/2017</div>
+      <div class="venue">Skinroom, NZ</div>
+    </div>
+
+    <h2>2016</h2>
+    <div class="exhibition">
+      <div class="title">Scratch and Loose</div>
+      <div class="date">26/02/2016 – 12/03/2016</div>
+      <div class="venue">Skinroom, NZ</div>
+    </div>
+  </main>
+
+  <script>
+    // Mobile nav toggle with improved animation and accessibility
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const isOpen = navMenu.classList.contains('open');
+      navMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      mobileToggle.setAttribute('aria-expanded', !isOpen);
+      if (!isOpen) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = '';
+      }
+    }
+    function closeMenuOnClickOutside(e) {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMenuOnClickOutside);
+      }
+    }
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</body>
+</html>
