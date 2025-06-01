@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+  <meta http-equiv="Expires" content="31536000" />
+  <meta name="theme-color" content="#000000" />
+  <title>Home | Chris Dean Davis</title>
+  <meta name="description" content="Photography portfolio of Chris Dean Davis" />
+  <meta property="og:title" content="Chris Dean Davis | Photographer" />
+  <meta property="og:description" content="Portfolio of Chris Dean Davis – portrait, location, and black & white photography" />
+  <meta property="og:image" content="https://yourdomain.com/images/og-preview.jpg" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Chris Dean Davis | Photographer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="images/icons/icon-192x192.png" />
+  
+<style>
+  
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+  <div id="scrollBar"></div>
+
+  <header class="main-header">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="people.html">People</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="fineart.html">Fine Art</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Connect</a></li>
+        <li><a href="exhibitions.html">Exhibitions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="image-grid" id="gallery"></section>
+
+  <div class="lightbox" id="lightbox">
+    <div class="spinner"></div>
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="nav prev" onclick="navigate(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Expanded image" />
+    <span class="nav next" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
+    const gallery = document.getElementById('gallery');
+    const images = [];
+    let currentIndex = 0;
+    const imagePaths = [];
+    let index = 1;
+    let consecutiveMisses = 0;
+    const maxConsecutiveMisses = 5;
+    const imageCache = new Set(); // Cache for loaded images
+
+    // Preload first few images immediately
+    function preloadInitialImages() {
+      const initialCount = 6; // Preload first 6 images
+      for (let i = 1; i <= initialCount; i++) {
+        const padded = String(i).padStart(3, '0');
+        const src = `images/home/home${padded}.JPG`;
+        const img = new Image();
+        img.src = src;
+        imageCache.add(src);
+      }
+    }
+
+    function tryNextImage() {
+      if (consecutiveMisses >= maxConsecutiveMisses) {
+        // Shuffle and display images in batches
+        const batchSize = 6;
+        const totalImages = imagePaths.length;
+        
+        // Shuffle the array
+        for (let i = imagePaths.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [imagePaths[i], imagePaths[j]] = [imagePaths[j], imagePaths[i]];
+        }
+
+        // Display images in batches
+        function displayBatch(startIndex) {
+          const endIndex = Math.min(startIndex + batchSize, totalImages);
+          for (let i = startIndex; i < endIndex; i++) {
+            const wrapper = createImageElement(imagePaths[i], i);
+            gallery.appendChild(wrapper);
+          }
+          
+          if (endIndex < totalImages) {
+            requestAnimationFrame(() => displayBatch(endIndex));
+          }
+        }
+        
+        displayBatch(0);
+        return;
+      }
+
+      const padded = String(index).padStart(3, '0');
+      const src = `images/home/home${padded}.JPG`;
+      
+      // Skip if already in cache
+      if (imageCache.has(src)) {
+        imagePaths.push(src);
+        consecutiveMisses = 0;
+        index++;
+        tryNextImage();
+        return;
+      }
+
+      const img = new Image();
+      img.onload = function() {
+        imagePaths.push(src);
+        imageCache.add(src);
+        consecutiveMisses = 0;
+        index++;
+        tryNextImage();
+      };
+      img.onerror = function() {
+        consecutiveMisses++;
+        index++;
+        tryNextImage();
+      };
+      img.src = src;
+    }
+
+    // Start preloading and loading process
+    preloadInitialImages();
+    tryNextImage();
+
+    // Image Loading with Error Handling and Responsive Images
+    function createImageElement(src, index) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'image-wrapper';
+      
+      const placeholder = document.createElement('div');
+      placeholder.className = 'loading-placeholder';
+      wrapper.appendChild(placeholder);
+
+      const img = new Image();
+      img.src = src;
+      img.alt = `Photograph ${index + 1} by Chris Dean Davis`;
+      img.loading = 'lazy';
+      img.className = 'gallery-img';
+      img.decoding = 'async'; // Add async decoding
+
+      // Add responsive image handling
+      if (window.innerWidth <= 768) {
+        img.src = src.replace('.JPG', '-mobile.JPG'); // Use smaller images for mobile
+      }
+
+      img.onload = () => {
+        placeholder.remove();
+        img.classList.add('loaded');
+        wrapper.appendChild(img);
+        images.push(img);
+        img.addEventListener('click', () => {
+          currentIndex = images.indexOf(img);
+          showLightbox();
+        });
+      };
+
+      img.onerror = () => {
+        placeholder.remove();
+        wrapper.classList.add('image-error');
+        wrapper.textContent = 'Image not available';
+      };
+
+      return wrapper;
+    }
+
+    // Improved Lightbox
+    function showLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const spinner = lightbox.querySelector('.spinner');
+      
+      lightbox.classList.add('active');
+      spinner.style.display = 'block';
+      lightboxImg.style.opacity = '0';
+      
+      // Preload next and previous images
+      const nextIndex = (currentIndex + 1) % images.length;
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      const preloadNext = new Image();
+      const preloadPrev = new Image();
+      preloadNext.src = images[nextIndex].src;
+      preloadPrev.src = images[prevIndex].src;
+
+      lightboxImg.onload = () => {
+        spinner.style.display = 'none';
+        lightboxImg.style.opacity = '1';
+      };
+
+      lightboxImg.src = images[currentIndex].src;
+      document.body.style.overflow = 'hidden';
+
+      // Add click outside handler
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigate(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    // Touch events for mobile navigation
+    document.getElementById('lightbox').addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.getElementById('lightbox').addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          navigate(1); // Swipe left, go next
+        } else {
+          navigate(-1); // Swipe right, go previous
+        }
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'ArrowRight') navigate(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Mobile menu toggle with improved accessibility
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const isOpen = navMenu.classList.contains('open');
+      
+      navMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      mobileToggle.setAttribute('aria-expanded', !isOpen);
+      
+      // Close menu when clicking outside
+      if (!isOpen) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeMenuOnClickOutside(e) {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMenuOnClickOutside);
+      }
+    }
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Add keyboard navigation for back to top
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Home') {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
+  </script>
+</body>
+</html>
