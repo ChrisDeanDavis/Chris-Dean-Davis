@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Chris Dean Davis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+  <meta name="description" content="Contact Chris Dean Davis for portrait sessions, collaborations, or editorial work. Get in touch via the contact form." />
+  <meta property="og:title" content="Contact | Chris Dean Davis" />
+  <meta property="og:description" content="Contact Chris Dean Davis for portrait sessions, collaborations, or editorial work. Get in touch via the contact form." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/headshot.JPG" />
+  <meta property="og:url" content="https://chrisdeandavis.com/contact.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact | Chris Dean Davis" />
+  <meta name="twitter:description" content="Contact Chris Dean Davis for portrait sessions, collaborations, or editorial work. Get in touch via the contact form." />
+  <meta name="twitter:image" content="images/headshot.JPG" />
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #000;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ccc;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1000;
+    }
+
+    .main-header h1 a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 60px);
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        padding: 2rem;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+      }
+
+      nav ul.open {
+        right: 0;
+      }
+
+      nav ul li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+      }
+
+      nav ul.open li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Stagger the animation for each menu item */
+      nav ul li:nth-child(1) { transition-delay: 0.1s; }
+      nav ul li:nth-child(2) { transition-delay: 0.15s; }
+      nav ul li:nth-child(3) { transition-delay: 0.2s; }
+      nav ul li:nth-child(4) { transition-delay: 0.25s; }
+      nav ul li:nth-child(5) { transition-delay: 0.3s; }
+      nav ul li:nth-child(6) { transition-delay: 0.35s; }
+
+      .mobile-toggle {
+        display: block;
+        color: #0074D9;
+        z-index: 1100;
+        position: relative;
+        font-size: 2rem;
+      }
+      .menu-open .mobile-toggle {
+        display: none !important;
+      }
+    }
+
+    main {
+      max-width: 600px;
+      margin: 3rem auto;
+      padding: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.75rem;
+      font: inherit;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 0.75rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    #scrollBar {
+      width: 0%;
+      height: 4px;
+      background: black;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;">
+  <div id="scrollBar"></div>
+
+  <header class="main-header">
+    <div class="header-content">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="people.html">People</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="fineart.html">Fine Art</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Connect</a></li>
+        <li><a href="exhibitions.html">Exhibitions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Get in Touch</h2>
+    <form action="https://formsubmit.co/chris_dean_davis@outlook.com" method="POST">
+      <input type="hidden" name="_next" value="thankyou.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display: none;">
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="date">Preferred Date (optional)</label>
+      <input type="date" id="date" name="date">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send</button>
+      <p id="confirmation" style="color: green; display: none;">Thank you! Your message has been sent.</p>
+    </form>
+  </main>
+
+  <script>
+    // Scroll progress
+    window.onscroll = function () {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scrollBar").style.width = scrolled + "%";
+    };
+
+    // Show confirmation message
+    const form = document.querySelector("form");
+    const confirmation = document.getElementById("confirmation");
+    form.addEventListener("submit", function () {
+      confirmation.style.display = "block";
+    });
+
+    // Mobile nav toggle with improved animation and accessibility
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const isOpen = navMenu.classList.contains('open');
+      navMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      mobileToggle.setAttribute('aria-expanded', !isOpen);
+      if (!isOpen) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = '';
+      }
+    }
+    function closeMenuOnClickOutside(e) {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMenuOnClickOutside);
+      }
+    }
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</body>
+</html>
