@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Chris Dean Davis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+  <meta name="description" content="About Chris Dean Davis, a portrait photographer based in Hamilton, New Zealand. Learn more about his style, experience, and approach to photography." />
+  <meta property="og:title" content="About | Chris Dean Davis" />
+  <meta property="og:description" content="About Chris Dean Davis, a portrait photographer based in Hamilton, New Zealand. Learn more about his style, experience, and approach to photography." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/headshot.JPG" />
+  <meta property="og:url" content="https://chrisdeandavis.com/about.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About | Chris Dean Davis" />
+  <meta name="twitter:description" content="About Chris Dean Davis, a portrait photographer based in Hamilton, New Zealand. Learn more about his style, experience, and approach to photography." />
+  <meta name="twitter:image" content="images/headshot.JPG" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #000;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1000;
+    }
+
+    .main-header h1 a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+    
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        padding: 2rem 2rem 2rem 2rem;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        padding-top: 60px;
+      }
+
+      nav ul.open {
+        right: 0;
+      }
+
+      nav ul li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+      }
+
+      nav ul.open li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Stagger the animation for each menu item */
+      nav ul li:nth-child(1) { transition-delay: 0.1s; }
+      nav ul li:nth-child(2) { transition-delay: 0.15s; }
+      nav ul li:nth-child(3) { transition-delay: 0.2s; }
+      nav ul li:nth-child(4) { transition-delay: 0.25s; }
+      nav ul li:nth-child(5) { transition-delay: 0.3s; }
+      nav ul li:nth-child(6) { transition-delay: 0.35s; }
+
+      .mobile-toggle {
+        display: block;
+      }
+    }
+
+    section, #exhibitions {
+      max-width: 800px;
+      margin: 3rem auto 0 auto;
+      padding: 0 2rem;
+      text-align: left;
+    }
+    section img {
+      margin-left: 0;
+    }
+    #exhibitions {
+      margin-top: 4rem;
+    }
+    #exhibitions > div {
+      display: block !important;
+      margin-bottom: 3rem;
+    }
+    #exhibitions h2, #exhibitions h3 {
+      display: block;
+      width: 100%;
+      font-weight: 600;
+      text-align: left;
+    }
+    #exhibitions h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    #exhibitions h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    #exhibitions > div > div {
+      margin-bottom: 2.5rem;
+      display: block;
+    }
+    #exhibitions div[style*='font-weight:600;'] {
+      font-weight: 600;
+    }
+    #exhibitions div[style*='font-style:italic;'] {
+      font-style: italic;
+    }
+    @media (min-width: 769px) {
+      #exhibitions, section {
+        display: block !important;
+      }
+    }
+
+    section.bio-flex {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      max-width: 800px;
+      margin: 3rem auto 0 auto;
+      padding: 0 2rem;
+      text-align: left;
+    }
+    section.bio-flex img {
+      width: 140px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      margin-left: 0;
+    }
+    section.bio-flex div {
+      flex: 1;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      min-width: 250px;
+    }
+    @media (max-width: 700px) {
+      section.bio-flex {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 3rem 0.5rem 3rem;
+        max-width: 800px;
+        margin: 3rem auto 0 auto;
+      }
+      section.bio-flex img {
+        margin-bottom: 1.5rem;
+        width: 120px;
+      }
+      section.bio-flex div {
+        min-width: 0;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      #exhibitions {
+        padding: 0 3rem;
+      }
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;">
+  <div id="scrollBar"></div>
+
+  <header class="main-header">
+    <div class="header-content">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="people.html">People</a>
+            <a href="events.html">Events</a>
+            <a href="fineart.html">Fine Art</a>
+            <a href="series.html">Series</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="people.html">People</a></li>
+        <li class="mobile-only"><a href="events.html">Events</a></li>
+        <li class="mobile-only"><a href="fineart.html">Fine Art</a></li>
+        <li class="mobile-only"><a href="series.html">Series</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="bio-flex">
+    <img src="images/headshot.JPG" alt="Chris Dean Davis" />
+    <div>
+      <p>
+        Chris Dean Davis is a portrait photographer based in Hamilton, New Zealand, with over 10 years of experience capturing people through both studio and on-location work. Known for his refined use of light and composition, Chris creates images that are at once bold and quietly intimate.
+      </p>
+      <p>
+        His work blends minimalism with emotional depth — often balancing controlled setups with natural gestures to produce portraits that feel timeless, cinematic, and human. Whether shooting in-studio or outdoors, Chris brings a calm and intentional presence to every session, drawing out genuine connection through simplicity and light.
+      </p>
+      <p>
+        Available for portrait sessions, collaborative projects, and editorial work.
+      </p>
+    </div>
+  </section>
+
+  <section id="exhibitions">
+    <h2>Exhibitions</h2>
+    <div>
+      <h3>2022</h3>
+      <div>
+        <div>Clementine</div>
+        <div>02/12/2022 – 16/12/2022</div>
+        <div>Never Space Project, NZ</div>
+      </div>
+      <div>
+        <div>Method</div>
+        <div>17/06/2022 – 07/07/2022</div>
+        <div>Pah Homestead, NZ</div>
+      </div>
+    </div>
+    <div>
+      <h3>2021</h3>
+      <div>
+        <div>Keeping On Keeping On</div>
+        <div>03/12/2021 – 18/12/2021</div>
+        <div>Never Space Project, NZ</div>
+      </div>
+      <div>
+        <div>Where The Sun Is Silent <span>(solo show)</span></div>
+        <div>19/05/2021 – 13/06/2021</div>
+        <div>Nancy Caiger Gallery, NZ</div>
+      </div>
+    </div>
+    <div>
+      <h3>2020</h3>
+      <div>
+        <div>Where The Sun Is Silent <span>(solo show)</span></div>
+        <div>23/11/2020 – 07/12/2020</div>
+        <div>Never Space Project, NZ</div>
+      </div>
+    </div>
+    <div>
+      <h3>2017</h3>
+      <div>
+        <div>The Shape of Things To Come</div>
+        <div>01/06/2017 – 29/06/2017</div>
+        <div>Wallace Gallery, Morrinsville, NZ</div>
+      </div>
+      <div>
+        <div>Repositioned</div>
+        <div>07/04/2017 – 24/04/2017</div>
+        <div>Skinroom, NZ</div>
+      </div>
+    </div>
+    <div>
+      <h3>2016</h3>
+      <div>
+        <div>Scratch and Loose</div>
+        <div>26/02/2016 – 12/03/2016</div>
+        <div>Skinroom, NZ</div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.2rem;">
+    Connect with me here:
+    <a href="https://www.instagram.com/Chris_Dean_Davis/" target="_blank" rel="noopener" class="social-icon">
+      <svg width="28" height="28" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9 114.9-51.3 114.9-114.9S287.7 141 224.1 141zm0 186c-39.5 0-71.5-32-71.5-71.5s32-71.5 71.5-71.5 71.5 32 71.5 71.5-32 71.5-71.5 71.5zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.3-9.9-66.7-36.2-92.1S388.6 1.7 353.3 0C317.3-1.7 130.7-1.7 94.7 0 59.4 1.7 28 9.9 2.6 36.2S1.7 123.4 0 158.7C-1.7 194.7-1.7 381.3 0 417.3c1.7 35.3 9.9 66.7 36.2 92.1s56.8 34.5 92.1 36.2c36 1.7 222.6 1.7 258.6 0 35.3-1.7 66.7-9.9 92.1-36.2s34.5-56.8 36.2-92.1c1.7-36 1.7-222.6 0-258.6zM398.8 388c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.3 9s-102.9 2.6-132.3-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.3s-2.6-102.9 9-132.3c7.8-19.6 22.9-34.7 42.5-42.5C121.1 35.6 190.9 38.2 224 38.2s102.9-2.6 132.3 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.3s2.7 102.9-9 132.3z"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/chris-davis-053762195/" target="_blank" rel="noopener" class="social-icon">
+      <svg width="28" height="28" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+        <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/>
+      </svg>
+    </a>
+  </footer>
+
+  <script>
+    // Scroll bar
+    window.onscroll = function () {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scrollBar").style.width = scrolled + "%";
+    };
+
+    // Mobile nav toggle with click-outside and close-on-link
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const isOpen = navMenu.classList.contains('open');
+      navMenu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', !isOpen);
+      if (!isOpen) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = '';
+      }
+    }
+    function closeMenuOnClickOutside(e) {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMenuOnClickOutside);
+      }
+    }
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        navMenu.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</body>
+</html>
