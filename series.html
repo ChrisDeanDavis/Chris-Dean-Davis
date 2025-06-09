@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series | Chris Dean Davis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .view-toggle {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 600px;
+      margin: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .coming-soon h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .coming-soon p {
+      font-size: 1.1rem;
+      color: #666;
+      margin: 0.5rem 0;
+    }
+
+    .copyright-footer {
+      margin-top: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .coming-soon {
+        padding: 3rem 1rem;
+      }
+      
+      .coming-soon h2 {
+        font-size: 1.75rem;
+      }
+      
+      .coming-soon p {
+        font-size: 1rem;
+      }
+
+      .view-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .image-grid.single-view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .image-grid.single-view img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .image-grid.single-view img:not(:first-child) {
+        display: none;
+      }
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    @media (max-width: 768px) {
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #fff;
+      min-width: 160px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 1001;
+      border-radius: 0 0 6px 6px;
+      overflow: hidden;
+    }
+    .dropdown-content a {
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+      white-space: nowrap;
+      background: #fff;
+      transition: background 0.2s;
+    }
+    .dropdown-content a:hover {
+      background: #f5f5f5;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .dropdown-content, .dropdown > a::after {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-bar-container"><div id="loading-bar"></div></div>
+  <button class="view-toggle" id="viewToggle" aria-label="Toggle view">⊞</button>
+  <header class="main-header">
+    <div class="header-content">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="people.html">People</a>
+            <a href="events.html">Events</a>
+            <a href="fineart.html">Fine Art</a>
+            <a href="series.html" class="active">Series</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="people.html">People</a></li>
+        <li class="mobile-only"><a href="events.html">Events</a></li>
+        <li class="mobile-only"><a href="fineart.html">Fine Art</a></li>
+        <li class="mobile-only"><a href="series.html" class="active">Series</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="coming-soon">
+    <h2>Series Coming Soon</h2>
+    <p>New photographic series are currently in development.</p>
+    <p>Check back soon for updates.</p>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="nav prev" onclick="navigate(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="">
+    <span class="nav next" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <footer class="copyright-footer">
+    <p>All content copyright © Chris Dean Davis <span id="current-year"></span></p>
+    <div style="margin-top: 1.5rem;">
+      <a href="https://www.instagram.com/Chris_Dean_Davis/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+        <svg width="36" height="36" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9 114.9-51.3 114.9-114.9S287.7 141 224.1 141zm0 186c-39.5 0-71.5-32-71.5-71.5s32-71.5 71.5-71.5 71.5 32 71.5 71.5-32 71.5-71.5 71.5zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.3-9.9-66.7-36.2-92.1S388.6 1.7 353.3 0C317.3-1.7 130.7-1.7 94.7 0 59.4 1.7 28 9.9 2.6 36.2S1.7 123.4 0 158.7C-1.7 194.7-1.7 381.3 0 417.3c1.7 35.3 9.9 66.7 36.2 92.1s56.8 34.5 92.1 36.2c36 1.7 222.6 1.7 258.6 0 35.3-1.7 66.7-9.9 92.1-36.2s34.5-56.8 36.2-92.1c1.7-36 1.7-222.6 0-258.6zM398.8 388c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.3 9s-102.9 2.6-132.3-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.3s-2.6-102.9 9-132.3c7.8-19.6 22.9-34.7 42.5-42.5C121.1 35.6 190.9 38.2 224 38.2s102.9-2.6 132.3 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.3s2.7 102.9-9 132.3z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/chris-davis-053762195/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" style="margin-left: 1.5rem;">
+        <svg width="36" height="36" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const gallery = document.getElementById('gallery');
+    const imageCount = 200;
+    const images = [];
+    let currentIndex = 0;
+    
+    // Detect if on mobile
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    // Adjust delay based on device - longer delay on mobile for better performance
+    const LOAD_DELAY = isMobile ? 200 : 100;
+    const BATCH_SIZE = 3;
+    let currentBatchStart = 1;
+    const MAX_IMAGES = isMobile ? 50 : 200;
+
+    let imagesLoaded = 0;
+    let imagesAttempted = 0;
+    const loadingBar = document.getElementById('loading-bar');
+    const loadingBarContainer = document.getElementById('loading-bar-container');
+    const totalImagesToTry = MAX_IMAGES;
+
+    function updateLoadingBar() {
+      const percent = Math.min(100, Math.round((imagesAttempted / totalImagesToTry) * 100));
+      loadingBar.style.width = percent + '%';
+      if (imagesAttempted >= totalImagesToTry) {
+        setTimeout(() => {
+          loadingBarContainer.style.opacity = '0';
+        }, 500);
+      }
+    }
+
+    function preloadImage(src) {
+      const img = new Image();
+      img.src = src;
+    }
+
+    function loadBatch(startIndex, batchSize) {
+      let loadedInBatch = 0;
+      function loadNextInBatch() {
+        if (loadedInBatch >= batchSize || startIndex + loadedInBatch > MAX_IMAGES) {
+          // After this batch, load the next batch after a delay
+          if (startIndex + loadedInBatch <= MAX_IMAGES) {
+            setTimeout(() => loadBatch(startIndex + batchSize, batchSize), LOAD_DELAY * 3);
+          }
+          return;
+        }
+        const padded = String(startIndex + loadedInBatch).padStart(3, '0');
+        const src = `images/series/series${padded}.JPG`;
+        const probe = new Image();
+        probe.onload = () => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `Series ${startIndex + loadedInBatch}`;
+          img.loading = 'lazy';
+          img.className = 'gallery-img';
+          img.addEventListener('click', () => {
+            currentIndex = images.indexOf(img);
+            showLightbox();
+          });
+          gallery.appendChild(img);
+          images.push(img);
+          imagesLoaded++;
+          imagesAttempted++;
+          updateLoadingBar();
+          loadedInBatch++;
+          loadNextInBatch();
+        };
+        probe.onerror = () => {
+          imagesAttempted++;
+          updateLoadingBar();
+          loadedInBatch++;
+          loadNextInBatch();
+        };
+        probe.src = src;
+      }
+      loadNextInBatch();
+    }
+    // Start loading the first batch
+    loadBatch(1, BATCH_SIZE);
+
+    function showLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightbox.classList.add('active');
+      lightboxImg.src = images[currentIndex].src;
+
+      // Preload next image
+      const nextIndex = (currentIndex + 1) % images.length;
+      preloadImage(images[nextIndex].src);
+
+      // Add click outside handler
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    function navigate(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'ArrowRight') navigate(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Mobile nav toggle with click-outside and close-on-link
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const isOpen = navMenu.classList.contains('open');
+      navMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      mobileToggle.setAttribute('aria-expanded', !isOpen);
+      if (!isOpen) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = '';
+      }
+    }
+    function closeMenuOnClickOutside(e) {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMenuOnClickOutside);
+      }
+    }
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // View toggle functionality
+    const viewToggle = document.getElementById('viewToggle');
+    let isSingleView = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    viewToggle.addEventListener('click', () => {
+      isSingleView = !isSingleView;
+      gallery.classList.toggle('single-view');
+      viewToggle.textContent = isSingleView ? '⊞' : '⊟';
+      
+      if (isSingleView) {
+        // Reset to first image when switching to single view
+        currentIndex = 0;
+        updateSingleView();
+      }
+    });
+
+    function updateSingleView() {
+      if (!isSingleView) return;
+      
+      const images = gallery.getElementsByTagName('img');
+      for (let i = 0; i < images.length; i++) {
+        images[i].style.display = i === currentIndex ? 'block' : 'none';
+      }
+    }
+
+    // Touch swipe handling
+    gallery.addEventListener('touchstart', (e) => {
+      if (!isSingleView) return;
+      touchStartX = e.changedTouches[0].screenY;
+    });
+
+    gallery.addEventListener('touchend', (e) => {
+      if (!isSingleView) return;
+      touchEndX = e.changedTouches[0].screenY;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) < swipeThreshold) return;
+      
+      if (diff > 0) {
+        // Swipe up - next image
+        currentIndex = (currentIndex + 1) % images.length;
+      } else {
+        // Swipe down - previous image
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+      }
+      
+      updateSingleView();
+    }
+  </script>
+</body>
+</html>
+ 
