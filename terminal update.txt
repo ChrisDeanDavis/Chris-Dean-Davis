@@ -1,0 +1,7 @@
+When updating Series...
+Use terminal 
+
+cd ~/Desktop/ChrisDD\ Website\ Final
+
+
+node generate-series-json.js
