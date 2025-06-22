@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+  <meta http-equiv="Expires" content="31536000" />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Chris Dean Davis | Photographer</title>
+  <meta name="title" content="Chris Dean Davis | Photographer">
+  <meta name="description" content="Photographer Chris Dean Davis specialises in portrait, location, and fine art photography. View portfolio, exhibitions, and book your session." />
+  <meta name="keywords" content="Chris Dean Davis, photographer, portrait photography, fine art photography, professional photographer, art exhibitions, photography portfolio" />
+  <meta name="author" content="Chris Dean Davis" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Chris Dean Davis | Professional Photographer" />
+  <meta property="og:description" content="Photographer specialising in portrait, location, and fine art photography. View portfolio and book your session." />
+  <meta property="og:image" content="https://chrisdeandavis.com/images/og-preview.jpg" />
+  <meta property="og:url" content="https://chrisdeandavis.com/" />
+  <meta property="og:site_name" content="Chris Dean Davis Photography" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chris Dean Davis | Professional Photographer" />
+  <meta name="twitter:description" content="Photographer specialising in portrait, location, and fine art photography. View portfolio and book your session." />
+  <meta name="twitter:image" content="https://chrisdeandavis.com/images/og-preview.jpg" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://chrisdeandavis.com/" />
+  
+  <!-- Existing links -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+  <link rel="shortcut icon" href="images/chrisdeandavislogo.png" type="image/png" />
+  
+<style>
+    .welcome-section {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .welcome-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .welcome-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .welcome-section .cta-button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .welcome-section .cta-button:hover {
+      background: #333;
+    }
+
+    @media (max-width: 768px) {
+      .welcome-section {
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .welcome-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .welcome-section p {
+        font-size: 1rem;
+      }
+    }
+
+    .gallery-link {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-link:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+
+    .gallery-link:hover .gallery-img {
+      filter: grayscale(100%);
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+  <div id="loading-bar-container"><div id="loading-bar"></div></div>
+  <div id="scrollBar"></div>
+
+  <header class="main-header">
+    <div class="header-content">
+    <h1><a href="index.html">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="portraits.html">Portraits</a>
+            <a href="events.html">Events</a>
+            <a href="fineart.html">Fine Art</a>
+            <a href="series.html">Series</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="portraits.html">Portraits</a></li>
+        <li class="mobile-only"><a href="events.html">Events</a></li>
+        <li class="mobile-only"><a href="fineart.html">Fine Art</a></li>
+        <li class="mobile-only"><a href="series.html">Series</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="about-overlay">
+    <div class="about-card">
+      <div class="about-spinner"></div>
+      <img src="images/headshot.JPG" alt="Chris Dean Davis" class="about-headshot" />
+      <h2>Chris Dean Davis</h2>
+      <h3>Photographer</h3>
+      <div class="about-location">Hamilton, New Zealand</div>
+      <p>Portrait & fine art photographer.</p>
+    </div>
+  </div>
+
+  <section class="image-grid" id="gallery"></section>
+
+  <div class="lightbox" id="lightbox">
+    <div class="spinner"></div>
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="nav prev" onclick="navigate(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Expanded image" />
+    <span class="nav next" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <!-- Welcome section moved here -->
+  <section class="welcome-section">
+    <p>Welcome to my photography portfolio.</p>
+    <p>
+      I specialise in portrait and fine art photography, creating images that tell stories.<br>
+      I go beyond the surface — blending elements of <strong>fine art, fashion, and storytelling</strong> to capture depth, atmosphere, and a sense of timelessness.
+    </p>
+    <p>Explore my work or get in touch to discuss your photography needs.</p>
+    <a href="contact.html" class="cta-button">Get in Touch</a>
+  </section>
+
+  <script>
+    // Set child indices for menu items
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuItems = document.querySelectorAll('nav ul li');
+      menuItems.forEach((item, index) => {
+        item.style.setProperty('--child-index', index);
+      });
+    });
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
+    const gallery = document.getElementById('gallery');
+    const images = [];
+    let currentIndex = 0;
+    const imagePaths = [];
+    let imagesLoaded = 0;
+    let imagesAttempted = 0;
+    const loadingBar = document.getElementById('loading-bar');
+    const loadingBarContainer = document.getElementById('loading-bar-container');
+
+    // Store loaded images in order
+    const loadedImages = new Array(3).fill(null);
+
+    function updateLoadingBar() {
+      const percent = Math.min(100, Math.round((imagesAttempted / 3) * 100));
+      loadingBar.style.width = percent + '%';
+      if (imagesAttempted >= 3) {
+        setTimeout(() => {
+          loadingBarContainer.style.opacity = '0';
+          hideAboutOverlay();
+        }, 300);
+      }
+    }
+
+    function displayImagesInOrder() {
+      // Clear the gallery
+      gallery.innerHTML = '';
+      
+      // Display images in order
+      loadedImages.forEach((wrapper, index) => {
+        if (wrapper) {
+          gallery.appendChild(wrapper);
+        }
+      });
+    }
+
+    function loadImages() {
+      // Detect if on mobile
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      
+      // Load all three images immediately
+      for (let i = 1; i <= 3; i++) {
+        const padded = String(i).padStart(3, '0');
+        // Use web/ subfolder for mobile, main folder for desktop
+        const src = isMobile ? `images/home/web/home${padded}.JPG` : `images/home/home${padded}.JPG`;
+        const img = new Image();
+        
+        img.onload = function() {
+          console.log(`Successfully loaded image: ${src}`);
+          imagePaths.push(src);
+          imagesLoaded++;
+          imagesAttempted++;
+          updateLoadingBar();
+          // Pass i-1 as the index to ensure correct order
+          const wrapper = createImageElement(src, i-1);
+          
+          // Store the wrapper in the correct position
+          loadedImages[i - 1] = wrapper;
+          
+          // If all images are loaded, display them in order
+          if (imagesLoaded === 3) {
+            displayImagesInOrder();
+          }
+        };
+        
+        img.onerror = function() {
+          console.error(`Failed to load image: ${src}`);
+          // Try alternative path format
+          const altSrc = isMobile ? `./images/home/web/home${padded}.JPG` : `./images/home/home${padded}.JPG`;
+          console.log(`Trying alternative path: ${altSrc}`);
+          
+          const altImg = new Image();
+          altImg.onload = function() {
+            console.log(`Successfully loaded image with alternative path: ${altSrc}`);
+            imagePaths.push(altSrc);
+            imagesLoaded++;
+            imagesAttempted++;
+            updateLoadingBar();
+            // Pass i-1 as the index to ensure correct order
+            const wrapper = createImageElement(altSrc, i-1);
+            
+            // Store the wrapper in the correct position
+            loadedImages[i - 1] = wrapper;
+            
+            // If all images are loaded, display them in order
+            if (imagesLoaded === 3) {
+              displayImagesInOrder();
+            }
+          };
+          
+          altImg.onerror = function() {
+            console.error(`Failed to load image with alternative path: ${altSrc}`);
+            imagesAttempted++;
+            updateLoadingBar();
+          };
+          
+          altImg.src = altSrc;
+        };
+        
+        img.src = src;
+      }
+    }
+
+    function createImageElement(src, index) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'image-wrapper';
+      
+      // Create link element
+      const link = document.createElement('a');
+      link.href = getGalleryLink(index);
+      link.className = 'gallery-link';
+      
+      const img = new Image();
+      img.alt = `Photograph ${index + 1} by Chris Dean Davis`;
+      img.className = 'gallery-img';
+      img.src = src;
+      
+      // Create overlay for hover effect
+      const overlay = document.createElement('div');
+      overlay.className = 'gallery-overlay';
+      overlay.textContent = getGalleryName(index);
+      
+      img.onload = () => {
+        img.classList.add('loaded');
+        link.appendChild(img);
+        link.appendChild(overlay);
+        wrapper.appendChild(link);
+        images.push(img);
+      };
+
+      img.onerror = () => {
+        console.error(`Error in createImageElement for: ${src}`);
+        wrapper.classList.add('image-error');
+        wrapper.textContent = 'Image not available';
+      };
+      
+      return wrapper;
+    }
+
+    function getGalleryLink(index) {
+      // Map the index to the correct gallery link
+      const links = ['portraits.html', 'events.html', 'fineart.html'];
+      return links[index] || '#';
+    }
+
+    function getGalleryName(index) {
+      // Map the index to the correct gallery name
+      const names = ['Portraits', 'Events', 'Fine Art'];
+      return names[index] || '';
+    }
+
+    // Start loading images immediately
+    loadImages();
+
+    // Handle screen size changes (e.g., device rotation)
+    let currentIsMobile = window.matchMedia('(max-width: 768px)').matches;
+    let resizeTimeout;
+    let isReloading = false;
+    
+    window.addEventListener('resize', () => {
+      // Clear any pending resize timeout
+      clearTimeout(resizeTimeout);
+      
+      // Debounce the resize event
+      resizeTimeout = setTimeout(() => {
+        const newIsMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (newIsMobile !== currentIsMobile && !isReloading) {
+          isReloading = true;
+          currentIsMobile = newIsMobile;
+          // Reload images with appropriate resolution
+          imagesLoaded = 0;
+          imagesAttempted = 0;
+          loadedImages.fill(null);
+          gallery.innerHTML = '';
+          loadImages();
+          
+          // Reset reloading flag after a short delay
+          setTimeout(() => {
+            isReloading = false;
+          }, 1000);
+        }
+      }, 250); // 250ms debounce
+    });
+
+    // Prevent right-click on images (including lightbox images)
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // --- Overlay on Centered Image for Mobile ---
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function updateMobileGalleryOverlays() {
+      const wrappers = document.querySelectorAll('.image-wrapper');
+      if (!isMobile()) {
+        // On desktop, reset overlays to default (opacity via CSS)
+        wrappers.forEach(wrapper => {
+          const overlay = wrapper.querySelector('.gallery-overlay');
+          overlay.style.opacity = '';
+        });
+        return;
+      }
+      let closest = null;
+      let closestDist = Infinity;
+      wrappers.forEach(wrapper => {
+        const rect = wrapper.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const viewportCenter = window.innerHeight / 2;
+        const dist = Math.abs(center - viewportCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = wrapper;
+        }
+      });
+      wrappers.forEach(wrapper => {
+        const overlay = wrapper.querySelector('.gallery-overlay');
+        if (wrapper === closest) {
+          overlay.style.opacity = '1';
+        } else {
+          overlay.style.opacity = '0';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateMobileGalleryOverlays);
+    window.addEventListener('resize', updateMobileGalleryOverlays);
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(updateMobileGalleryOverlays, 500);
+    });
+
+    // Optimize image loading with Intersection Observer
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        }
+      });
+    });
+
+    // Improved Lightbox
+    function showLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const spinner = lightbox.querySelector('.spinner');
+      
+      lightbox.classList.add('active');
+      spinner.style.display = 'block';
+      lightboxImg.style.opacity = '0';
+      
+      // Preload next and previous images
+      const nextIndex = (currentIndex + 1) % images.length;
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      const preloadNext = new Image();
+      const preloadPrev = new Image();
+      preloadNext.src = images[nextIndex].src;
+      preloadPrev.src = images[prevIndex].src;
+
+      lightboxImg.onload = () => {
+        spinner.style.display = 'none';
+        lightboxImg.style.opacity = '1';
+      };
+
+      lightboxImg.src = images[currentIndex].src;
+      document.body.style.overflow = 'hidden';
+
+      // Add click outside handler
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigate(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    // Touch events for mobile navigation
+    document.getElementById('lightbox').addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.getElementById('lightbox').addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          navigate(1); // Swipe left, go next
+        } else {
+          navigate(-1); // Swipe right, go previous
+        }
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'ArrowRight') navigate(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Improved mobile menu functionality
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      const body = document.body;
+      const isOpen = nav.classList.contains('open');
+      
+      nav.classList.toggle('open');
+      body.classList.toggle('menu-open');
+      
+      // Update aria-expanded attribute
+      const toggleButton = document.querySelector('.mobile-toggle');
+      toggleButton.setAttribute('aria-expanded', !isOpen);
+      
+      // Trap focus within menu when open
+      if (!isOpen) {
+        const firstMenuItem = nav.querySelector('a');
+        if (firstMenuItem) {
+          firstMenuItem.focus();
+        }
+      }
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const nav = document.getElementById('nav-menu');
+      const toggleButton = document.querySelector('.mobile-toggle');
+      
+      if (nav.classList.contains('open') && 
+          !nav.contains(event.target) && 
+          !toggleButton.contains(event.target)) {
+        toggleMenu();
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const nav = document.getElementById('nav-menu');
+        if (nav.classList.contains('open')) {
+          toggleMenu();
+        }
+      }
+    });
+
+    // Add keyboard navigation for back to top
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Home') {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
+
+    let aboutOverlayTimeout;
+    let aboutOverlayHidden = false;
+    function hideAboutOverlay() {
+      if (aboutOverlayHidden) return;
+      aboutOverlayHidden = true;
+      const aboutOverlay = document.getElementById('about-overlay');
+      if (aboutOverlay) {
+        aboutOverlay.classList.add('hide');
+        setTimeout(() => { aboutOverlay.style.display = 'none'; }, 600);
+      }
+    }
+
+    // Only show about overlay on first visit
+    const hasVisited = localStorage.getItem('hasVisitedChrisDeanDavis');
+    if (hasVisited) {
+      // Hide overlay immediately
+      const aboutOverlay = document.getElementById('about-overlay');
+      if (aboutOverlay) {
+        aboutOverlay.style.display = 'none';
+      }
+      aboutOverlayHidden = true;
+    } else {
+      // Set flag for future visits
+      localStorage.setItem('hasVisitedChrisDeanDavis', 'true');
+      // Set a max timeout for 2.5 seconds
+      aboutOverlayTimeout = setTimeout(hideAboutOverlay, 2500);
+    }
+  </script>
+
+  <footer class="copyright-footer">
+    <p>All content copyright © Chris Dean Davis <span id="current-year"></span></p>
+    <div style="margin-top: 1.5rem;">
+      <a href="https://www.instagram.com/Chris_Dean_Davis/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/chris-davis-053762195/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" style="margin-left: 1.5rem;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.82-11.018-3.715v-2.154z"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in copyright footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
