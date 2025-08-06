@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing | Chris Dean Davis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+  
+  <!-- Meta tags for SEO -->
+  <meta name="description" content="Pricing for portrait sessions, event photography, and fine art prints by Chris Dean Davis. Professional photography services in Hamilton, New Zealand." />
+  <meta property="og:title" content="Pricing | Chris Dean Davis" />
+  <meta property="og:description" content="Pricing for portrait sessions, event photography, and fine art prints by Chris Dean Davis. Professional photography services in Hamilton, New Zealand." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/headshot.JPG" />
+  <meta property="og:url" content="https://chrisdeandavis.com/pricing.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pricing | Chris Dean Davis" />
+  <meta name="twitter:description" content="Pricing for portrait sessions, event photography, and fine art prints by Chris Dean Davis. Professional photography services in Hamilton, New Zealand." />
+  <meta name="twitter:image" content="images/headshot.JPG" />
+
+  <style>
+    .pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .pricing-intro {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .pricing-intro h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .pricing-intro p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    .pricing-card .price-note {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+    }
+
+    .pricing-features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-card .cta-button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+      font-weight: 500;
+    }
+
+    .pricing-card .cta-button:hover {
+      background: #333;
+    }
+
+    .additional-info {
+      background: #f8f8f8;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+    }
+
+    .additional-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .additional-info ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .additional-info li {
+      padding: 0.5rem 0;
+      color: #333;
+    }
+
+    .additional-info li:before {
+      content: "•";
+      color: #000;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .contact-note {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+
+    .contact-note h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .contact-note p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-note .cta-button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .contact-note .cta-button:hover {
+      background: #333;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-container {
+        padding: 1rem;
+      }
+
+      .pricing-intro h2 {
+        font-size: 2rem;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .pricing-card {
+        padding: 1.5rem;
+      }
+
+      .pricing-card .price {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <h1><a href="index">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="portraits">Portraits</a>
+            <a href="events">Events</a>
+            <a href="fineart">Fine Art</a>
+            <a href="series">Series</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="portraits">Portraits</a></li>
+        <li class="mobile-only"><a href="events">Events</a></li>
+        <li class="mobile-only"><a href="fineart">Fine Art</a></li>
+        <li class="mobile-only"><a href="series">Series</a></li>
+        <li><a href="shop">Shop</a></li>
+        <li><a href="pricing" class="active">Pricing</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="contact">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="pricing-container">
+    <section class="pricing-intro">
+      <h2>Pricing & Services</h2>
+      <p>Professional photography services tailored to your needs. Each session is crafted to capture your unique story with artistic vision and technical excellence.</p>
+    </section>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Portrait Session</h3>
+        <div class="price">$350</div>
+        <div class="price-note">per session</div>
+        <ul class="pricing-features">
+          <li>1-2 hour professional session</li>
+          <li>Location of your choice</li>
+          <li>Professional editing & retouching</li>
+          <li>10+ high-resolution digital images</li>
+          <li>Online gallery for selection</li>
+          <li>Print-ready files</li>
+        </ul>
+        <a href="contact" class="cta-button">Book Session</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Event Photography</h3>
+        <div class="price">$500</div>
+        <div class="price-note">3 hours coverage</div>
+        <ul class="pricing-features">
+          <li>3 hours of event coverage</li>
+          <li>Professional equipment & lighting</li>
+          <li>Comprehensive editing</li>
+          <li>50+ high-resolution images</li>
+          <li>Online gallery delivery</li>
+          <li>Print-ready files included</li>
+          <li>Additional hours: $150/hr</li>
+        </ul>
+        <a href="contact" class="cta-button">Book Event</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Fine Art Portrait Sessions</h3>
+        <div class="price">$400</div>
+        <div class="price-note">per session</div>
+        <ul class="pricing-features">
+          <li>2-3 hour artistic session</li>
+          <li>Studio or location setup</li>
+          <li>Professional lighting & equipment</li>
+          <li>Artistic editing & retouching</li>
+          <li>3 high-resolution images</li>
+          <li>Fine art print included</li>
+        </ul>
+        <a href="contact" class="cta-button">Book Session</a>
+      </div>
+    </div>
+
+    <div class="additional-info">
+      <h3>Additional Services & Information</h3>
+      <ul>
+        <li><strong>Travel:</strong> Additional travel fees may apply for locations outside Hamilton</li>
+        <li><strong>Rush Delivery:</strong> Expedited editing and delivery available for an additional fee</li>
+        <li><strong>Additional Images:</strong> Extra edited images available for purchase</li>
+        <li><strong>Print Packages:</strong> Custom print packages and albums available</li>
+        <li><strong>Commercial Work:</strong> Custom pricing for commercial and editorial projects</li>
+        <li><strong>Deposit:</strong> 50% deposit required to secure your booking</li>
+      </ul>
+    </div>
+
+    <div class="contact-note">
+      <h3>Ready to Get Started?</h3>
+      <p>Every project is unique, and I'm happy to discuss custom packages that fit your specific needs and budget. Let's create something beautiful together.</p>
+      <a href="contact" class="cta-button">Get in Touch</a>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      const body = document.body;
+      
+      nav.classList.toggle('open');
+      body.classList.toggle('menu-open');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const nav = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      
+      if (!nav.contains(event.target) && !mobileToggle.contains(event.target)) {
+        nav.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      }
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('nav-menu').classList.remove('open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  </script>
+</body>
+</html> 

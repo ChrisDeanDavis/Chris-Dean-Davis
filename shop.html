@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | Chris Dean Davis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <h1><a href="index">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="portraits">Portraits</a>
+            <a href="events">Events</a>
+            <a href="fineart">Fine Art</a>
+            <a href="series">Series</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="portraits">Portraits</a></li>
+        <li class="mobile-only"><a href="events">Events</a></li>
+        <li class="mobile-only"><a href="fineart">Fine Art</a></li>
+        <li class="mobile-only"><a href="series">Series</a></li>
+        <li><a href="shop" class="active">Shop</a></li>
+        <li><a href="pricing">Pricing</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="contact">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="shop-container">
+    <section class="shop-intro">
+      <h2>Fine Art Prints</h2>
+      <p>Each print is carefully produced using archival materials and comes with a certificate of authenticity.</p>
+    </section>
+
+    <section class="print-options">
+      <div class="print-size">
+        <h3>Available Sizes</h3>
+        <ul>
+          <li>8" x 12" - NZD $150</li>
+          <li>12" x 18" - NZD $250</li>
+          <li>16" x 24" - NZD $350</li>
+          <li>20" x 30" - NZD $450</li>
+          <li>24" x 36" - NZD $550</li>
+        </ul>
+        <p class="shipping-note">* Shipping costs vary for international orders. Please contact for specific shipping rates to your location.</p>
+      </div>
+      <div class="print-materials">
+        <h3>Print Materials</h3>
+        <ul>
+          <li>Archival Fine Art Paper</li>
+          <li>Museum Quality Ink</li>
+          <li>Signed and Numbered</li>
+          <li>Certificate of Authenticity</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="shop-gallery">
+      <h3>Available Prints</h3>
+      <div class="print-grid" id="print-grid">
+        <!-- Images will be dynamically loaded here -->
+      </div>
+    </section>
+
+    <section class="ordering-info">
+      <h3>How to Order</h3>
+      <p>To purchase a print, please contact me through the <a href="contact">contact page</a>. Include the following information from the print you are interested in:</p>
+      <ul>
+        <li>Print name/number (e.g., "Print #001")</li>
+        <li>Desired size</li>
+        <li>Shipping address</li>
+        <li>Any special requests</li>
+      </ul>
+      <p>I will respond with payment details and estimated delivery time.</p>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="nav prev" onclick="navigate(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Print">
+    <span class="nav next" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <footer class="copyright-footer">
+    <p>All content copyright © Chris Dean Davis <span id="current-year"></span></p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const printGrid = document.getElementById('print-grid');
+      const MAX_PRINTS = 50;
+      const availablePrints = [];
+      const loadedPrintData = new Array(MAX_PRINTS);
+      let printsProcessed = 0;
+
+      function finalizeGallery() {
+        // Clear the grid before adding sorted items
+        printGrid.innerHTML = '';
+        
+        // Add prints to the DOM in the correct order
+        loadedPrintData.forEach(printData => {
+          if (printData) {
+            const printElement = document.createElement('div');
+            printElement.className = 'print-item';
+            
+            const img = document.createElement('img');
+            img.src = printData.webSrc;
+            img.alt = printData.alt;
+            img.loading = 'lazy';
+            
+            const p = document.createElement('p');
+            p.textContent = printData.text;
+
+            printElement.appendChild(img);
+            printElement.appendChild(p);
+            
+            // Add the final, ordered print data to the array for the lightbox
+            availablePrints.push(printData);
+            
+            printElement.addEventListener('click', () => {
+              const currentIndex = availablePrints.indexOf(printData);
+              showLightbox(currentIndex);
+            });
+            
+            printGrid.appendChild(printElement);
+          }
+        });
+
+        if (availablePrints.length === 0) {
+          printGrid.innerHTML = '<p class="no-prints-message">Sorry, there are currently no prints available. Please check back soon for new additions to the collection.</p>';
+        }
+      }
+
+      for (let i = 0; i < MAX_PRINTS; i++) {
+        const imgIndex = i + 1;
+        const padded = String(imgIndex).padStart(3, '0');
+        const webSrc = `images/shop/web/print${padded}.JPG`;
+        const fullSrc = `images/shop/print${padded}.JPG`;
+
+        const probe = new Image();
+        
+        probe.onload = () => {
+          loadedPrintData[i] = {
+            webSrc,
+            fullSrc,
+            alt: `Print ${padded}`,
+            text: `Print #${padded}`
+          };
+          
+          printsProcessed++;
+          if (printsProcessed === MAX_PRINTS) {
+            finalizeGallery();
+          }
+        };
+
+        probe.onerror = () => {
+          loadedPrintData[i] = null; // Mark as failed
+          printsProcessed++;
+          if (printsProcessed === MAX_PRINTS) {
+            finalizeGallery();
+          }
+        };
+        
+        probe.src = webSrc;
+      }
+
+      // Lightbox functionality
+      let currentIndex = 0;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      function showLightbox(index) {
+        currentIndex = index;
+        lightboxImg.src = availablePrints[currentIndex].fullSrc;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      window.closeLightbox = function() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      window.navigate = function(direction) {
+        currentIndex = (currentIndex + direction + availablePrints.length) % availablePrints.length;
+        lightboxImg.src = availablePrints[currentIndex].fullSrc;
+      }
+      
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') navigate(1);
+        if (e.key === 'ArrowLeft') navigate(-1);
+        if (e.key === 'Escape') closeLightbox();
+      });
+    });
+
+    // Set current year in copyright footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const isOpen = navMenu.classList.contains('open');
+      
+      navMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      mobileToggle.setAttribute('aria-expanded', !isOpen);
+      
+      if (!isOpen) {
+        document.addEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeMenuOnClickOutside(e) {
+      const navMenu = document.getElementById('nav-menu');
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMenuOnClickOutside);
+      }
+    }
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        navMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</body>
+</html> 
