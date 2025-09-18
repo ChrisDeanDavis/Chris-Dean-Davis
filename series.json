@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Series 1",
+    "folder": "Series 1",
+    "images": ["series001.jpg", "series002.jpg", "series003.jpg"]
+  },
+  {
+    "title": "Series 2",
+    "folder": "Series 2",
+    "images": ["series001.jpg", "series002.jpg", "series003.jpg"]
+  },
+  {
+    "title": "Series 3",
+    "folder": "Series 3",
+    "images": ["series001.jpg", "series002.jpg", "series003.jpg"]
+  }
+] 
