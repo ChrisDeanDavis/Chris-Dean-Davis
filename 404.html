@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Not Found | Chris Dean Davis</title>
+  <meta name="description" content="Page not found. Return to Chris Dean Davis Photography portfolio." />
+  <link rel="canonical" href="https://chrisdeandavis.com/" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+  <style>
+    .notfound-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+    .notfound-title {
+      font-size: 5rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+    .notfound-message {
+      font-size: 1.5rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    .notfound-home {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: #000;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .notfound-home:hover {
+      background: #444;
+    }
+    .notfound-logo {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .notfound-title {
+        font-size: 3rem;
+      }
+      .notfound-message {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="main-header">
+    <div class="header-content">
+      <h1><a href="index">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">&#9776;</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="portraits">Portraits</a>
+            <a href="events">Events</a>
+            <a href="fineart">Fine Art</a>
+            <a href="series">Series</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="portraits">Portraits</a></li>
+        <li class="mobile-only"><a href="events">Events</a></li>
+        <li class="mobile-only"><a href="fineart">Fine Art</a></li>
+        <li class="mobile-only"><a href="series">Series</a></li>
+        <li><a href="shop">Shop</a></li>
+        <li><a href="pricing">Pricing</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="contact">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="notfound-container" id="main-content">
+    <img src="images/chrisdeandavislogo.png" alt="Chris Dean Davis Logo" class="notfound-logo" />
+    <div class="notfound-title">404</div>
+    <div class="notfound-message">
+      Sorry, the page you're looking for can't be found.<br />
+      It may have been moved, deleted, or never existed.
+    </div>
+    <a href="index" class="notfound-home">Back to Home</a>
+  </div>
+  <script>
+    function toggleMenu() {
+      var nav = document.getElementById('nav-menu');
+      var toggle = document.querySelector('.mobile-toggle');
+      var isOpen = nav.classList.contains('open');
+      nav.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      toggle.setAttribute('aria-expanded', !isOpen);
+    }
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('nav-menu');
+      var toggle = document.querySelector('.mobile-toggle');
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) toggleMenu();
+    });
+  </script>
+</body>
+</html> 
