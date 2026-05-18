@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Not Found | Chris Dean Davis</title>
+  <meta name="description" content="Page not found. Return to Chris Dean Davis Photography portfolio." />
+  <link rel="canonical" href="https://chrisdeandavis.com/" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20260516-7" />
+  <link rel="icon" type="image/png" href="images/chrisdeandavislogo.png" />
+  <style>
+    /* Body becomes a flex column so the 404 area fills exactly the
+       viewport height MINUS the sticky header (no double-100vh = no scroll). */
+    html, body.notfound-body {
+      height: 100%;
+    }
+    body.notfound-body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    body.notfound-body .main-header {
+      flex: 0 0 auto;
+    }
+    .notfound-container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: #fff;
+    }
+    .notfound-inner {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .notfound-logo {
+      width: 56px;
+      height: 56px;
+      margin: 0;
+    }
+    .notfound-title {
+      font-size: clamp(3.5rem, 9vw, 5.5rem);
+      font-weight: 700;
+      color: #111;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      margin: 0;
+    }
+    .notfound-message {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: #555;
+      line-height: 1.55;
+      max-width: 38ch;
+      margin: 0;
+    }
+    .notfound-home {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      background: #000;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease, transform 0.12s ease;
+    }
+    .notfound-home:hover {
+      background: #2a2a2a;
+    }
+    .notfound-home:active {
+      transform: translateY(1px);
+    }
+    @media (max-height: 620px) {
+      .notfound-inner { gap: 0.9rem; }
+      .notfound-logo { width: 44px; height: 44px; }
+    }
+  </style>
+</head>
+<body class="notfound-body">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="main-header">
+    <div class="header-content">
+      <h1><a href="index">CHRIS DEAN DAVIS</a></h1>
+      <h2 class="photographer-title">PHOTOGRAPHER</h2>
+    </div>
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu">&#9776;</button>
+    <nav>
+      <ul id="nav-menu">
+        <li class="dropdown desktop-only">
+          <a href="#" class="dropdown-toggle"><span class="nav-text">Work</span></a>
+          <div class="dropdown-content">
+            <a href="portraits">Portraits</a>
+            <a href="events">Events</a>
+            <a href="fineart">Fine Art</a>
+            <a href="commercial">Commercial</a>
+          </div>
+        </li>
+        <li class="mobile-only"><a href="portraits">Portraits</a></li>
+        <li class="mobile-only"><a href="events">Events</a></li>
+        <li class="mobile-only"><a href="fineart">Fine Art</a></li>
+        <li class="mobile-only"><a href="commercial">Commercial</a></li>
+        <li><a href="shop">Shop</a></li>
+        <li><a href="pricing">Pricing</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="contact">Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="notfound-container" id="main-content">
+    <div class="notfound-inner">
+      <img src="images/chrisdeandavislogo.png" alt="Chris Dean Davis Logo" class="notfound-logo" />
+      <div class="notfound-title" aria-label="404 — page not found">404</div>
+      <p class="notfound-message">
+        Sorry, the page you&rsquo;re looking for can&rsquo;t be found.<br />
+        It may have been moved, deleted, or never existed.
+      </p>
+      <a href="index" class="notfound-home">Back to Home</a>
+    </div>
+  </main>
+  <script>
+    function toggleMenu() {
+      var nav = document.getElementById('nav-menu');
+      var toggle = document.querySelector('.mobile-toggle');
+      var isOpen = nav.classList.contains('open');
+      nav.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      toggle.setAttribute('aria-expanded', !isOpen);
+    }
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('nav-menu');
+      var toggle = document.querySelector('.mobile-toggle');
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) toggleMenu();
+    });
+  </script>
+</body>
+</html> 
